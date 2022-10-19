@@ -1,4 +1,4 @@
-absl-py @ file:///C:/ci/absl-py_1623867344508/work
+absl-py
 async-generator==1.10
 async-timeout==3.0.1
 atomicwrites==1.4.0
@@ -14,10 +14,10 @@ graphviz==0.17
 grpcio==1.41.0
 h5py==3.1.0
 imageio==2.9.0
-jsonschema @ file:///Users/ktietz/demo/mc3/conda-bld/jsonschema_1630511932244/work
+jsonschema
 keras==2.6.0
-Keras-Applications @ file:///tmp/build/80754af9/keras-applications_1594366238411/work
-Keras-Preprocessing @ file:///tmp/build/80754af9/keras-preprocessing_1612283640596/work
+Keras-Applications
+Keras-Preprocessing
 matplotlib==3.3.4
 numpy==1.18.5
 opencv-contrib-python==4.5.3.56

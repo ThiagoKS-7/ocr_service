@@ -7,6 +7,8 @@ frase = ""
 
 
 class OCR(object):
+    def __init__(self, image):
+        self.image = image;
     def config_input(self, img, lang="por", dict=Output.DICT):
         return pytesseract.image_to_data(img, lang=lang, output_type=dict)
 
@@ -22,7 +24,8 @@ class OCR(object):
     def start(self):
         from services.ocr.utils.text_util import Text_util
         from services.ocr.utils.img_util import Img_util
-
+        print(self.image.filename)
+        # TODO: SALVAR EM ASSETS E DAI ACESSAR O PATH
         img, rgb, ipt = Img_util.config_img(self.config_input, "/assets/data.jpg")
         textos, img = Text_util.find(rgb, ipt)
         print(self.build_phrase(frase, textos, img))

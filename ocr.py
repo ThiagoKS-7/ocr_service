@@ -3,7 +3,8 @@ from pytesseract import Output
 
 
 pytesseract.pytesseract.tesseract_cmd = "C:/Program Files/Tesseract-OCR/tesseract.exe"
-frase = ''
+frase = ""
+
 
 class OCR(object):
     def config_input(self, img, lang="por", dict=Output.DICT):
@@ -19,8 +20,9 @@ class OCR(object):
         return response
 
     def start(self):
-        from utils.text_util import Text_util
-        from utils.img_util import Img_util
+        from services.ocr.utils.text_util import Text_util
+        from services.ocr.utils.img_util import Img_util
+
         img, rgb, ipt = Img_util.config_img(self.config_input, "/assets/data.jpg")
         textos, img = Text_util.find(rgb, ipt)
         print(self.build_phrase(frase, textos, img))

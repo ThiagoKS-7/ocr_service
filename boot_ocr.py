@@ -1,6 +1,10 @@
 import pytesseract
 from pytesseract import Output
-
+import cv2
+import os
+import shutil
+import numpy as np
+import tensorflow as tf
 
 pytesseract.pytesseract.tesseract_cmd = "C:/Program Files/Tesseract-OCR/tesseract.exe"
 frase = ""
@@ -24,11 +28,11 @@ class OCR(object):
     def start(self):
         from services.ocr.utils.text_util import Text_util
         from services.ocr.utils.img_util import Img_util
-        print(self.image.filename)
-        # TODO: SALVAR EM ASSETS E DAI ACESSAR O PATH
-        img, rgb, ipt = Img_util.config_img(self.config_input, "/assets/data.jpg")
+        img_raw = tf.image.decode_image(self.image, channels=3)
+        cv2.imwrite(os.path.abspath(".") +  "/services/ocr/assets/data.jpg", img_raw.numpy())
+        img, rgb, ipt = Img_util.config_img(self.config_input, "/services/ocr/assets/data.jpg")
         textos, img = Text_util.find(rgb, ipt)
-        print(self.build_phrase(frase, textos, img))
+        return self.build_phrase(frase, textos, img)
 
 
 if __name__ == "__main__":

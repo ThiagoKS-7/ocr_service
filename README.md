@@ -28,7 +28,16 @@
 - [Authors](#authors)
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
-TODO
+
+**On Linux**
+
+- Install Tesseract: `sudo apt install tesseract-ocr`;
+
+- Download your language font: `wget https://github.com/tesseract-ocr/tessdata/raw/main/lang.traineddata`. See https://github.com/tesseract-ocr/tessdata to check all suported languages';
+
+- Move your downloaded font to tessdate folde: `sudo mv lang.traineddata /usr/share/tesseract-ocr/4.00/tessdata/`;
+
+- Enjoy :)
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 

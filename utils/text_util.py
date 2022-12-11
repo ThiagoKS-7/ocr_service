@@ -4,12 +4,12 @@ import numpy as np
 
 
 class Text_util(object):
-    def write(texto, x, y, img, font, tamanho_texto=19):
+    def write(texto, x, y, img, tamanho_texto=19):
+        font = ImageFont.load_default()
         img_pil = Image.fromarray(img)
         draw = ImageDraw.Draw(img_pil)
         draw.text(
-            (x, y - tamanho_texto), texto, font=ImageFont.truetype(font, tamanho_texto)
-        )
+            (x, y - tamanho_texto), texto, font=font)
         return np.array(img_pil)
 
     def find(rgb, ipt):

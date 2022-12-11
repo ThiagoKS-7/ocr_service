@@ -27,7 +27,7 @@ class Text_pred(object):
                         + str(int(float(resultado["conf"][i])))
                         + "%"
                     )
-                    img_copia = Text_util.write(texto, x, y, img_copia, fonte)
+                    img_copia = Text_util.write(texto, x, y, img_copia)
         if len(img.shape) == 3:
             textos, img = self.format_img("predicted", img_copia, textos, n)
             return textos, img

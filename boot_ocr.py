@@ -3,10 +3,11 @@ from pytesseract import Output
 import cv2
 import os
 import shutil
+import base64
 import numpy as np
 import tensorflow as tf
 
-pytesseract.pytesseract.tesseract_cmd = "C:/Program Files/Tesseract-OCR/tesseract.exe"
+# pytesseract.pytesseract.tesseract_cmd = "C:/Program Files/Tesseract-OCR/tesseract.exe"
 frase = ""
 
 
@@ -22,7 +23,7 @@ class OCR(object):
                 frase = i
             else:
                 frase = frase + " " + i
-        response = {"status": 200, "data": {"frase": frase, "img": img}}
+        response = response = {"status": 200, "data":  base64.b64encode(response), "message": frase,}
         return response
 
     def start(self):
@@ -32,7 +33,8 @@ class OCR(object):
         cv2.imwrite(os.path.abspath(".") +  "/services/ocr/assets/data.jpg", img_raw.numpy())
         img, rgb, ipt = Img_util.config_img(self.config_input, "/services/ocr/assets/data.jpg")
         textos, img = Text_util.find(rgb, ipt)
-        return self.build_phrase(frase, textos, img)
+        _, img_encoded = cv2.imencode(".png", img)
+        return self.build_phrase(frase, textos, img_encoded.tostring())
 
 
 if __name__ == "__main__":

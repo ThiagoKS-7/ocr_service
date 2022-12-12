@@ -9,7 +9,7 @@ fonte = "Fontes/calibri.ttf"
 class Text_pred(object):
     def format_img(self, tipo, img, textos, n):
         cv2.imwrite(os.path.abspath(".") + f"/services/ocr/assets/preds/{tipo}{n}.jpg", img)
-        return textos, f"{tipo}{n}.jpg"
+        return textos, img
 
     def predict_text(self, resultado, min_conf, img, n):
         img_copia = img.copy()

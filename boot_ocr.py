@@ -23,7 +23,7 @@ class OCR(object):
                 frase = i
             else:
                 frase = frase + " " + i
-        response = response = {"status": 200, "data":  base64.b64encode(response), "message": frase,}
+        response = {"status": 200, "message": frase, "data":  base64.b64encode(img)}
         return response
 
     def start(self):
@@ -33,8 +33,7 @@ class OCR(object):
         cv2.imwrite(os.path.abspath(".") +  "/services/ocr/assets/data.jpg", img_raw.numpy())
         img, rgb, ipt = Img_util.config_img(self.config_input, "/services/ocr/assets/data.jpg")
         textos, img = Text_util.find(rgb, ipt)
-        _, img_encoded = cv2.imencode(".png", img)
-        return self.build_phrase(frase, textos, img_encoded.tostring())
+        return self.build_phrase(frase, textos, img.tostring())
 
 
 if __name__ == "__main__":

@@ -1,5 +1,6 @@
 import cv2
 import os
+import base64
 from services.ocr.utils.text_util import Text_util
 from services.ocr.utils.img_util import Img_util
 
@@ -9,10 +10,12 @@ fonte = "Fontes/calibri.ttf"
 class Text_pred(object):
     def format_img(self, tipo, img, textos, n):
         cv2.imwrite(os.path.abspath(".") + f"/services/ocr/assets/preds/{tipo}{n}.jpg", img)
-        return textos, img
+        _, img_encoded = cv2.imencode(".jpg", img)
+        return textos, base64.b64encode(img_encoded.tostring())
 
     def predict_text(self, resultado, min_conf, img, n):
         img_copia = img.copy()
+        print(type(img))
         textos = []
         for i in range(0, len(resultado["text"])):
             confianca = float(resultado["conf"][i])
